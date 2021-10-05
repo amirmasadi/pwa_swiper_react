@@ -6,6 +6,7 @@ import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
 import { AnimatePresence } from "framer-motion";
+import SwiperPage from "./pages/SwiperPage";
 
 function App() {
   const location = useLocation();
@@ -26,6 +27,9 @@ function App() {
           </Route>
           <Route path="/about">
             <About />
+          </Route>
+          <Route path="/swiper">
+            <SwiperPage />
           </Route>
           <Route path="/">
             <Main />
