@@ -36,7 +36,12 @@ export default function SwiperPage() {
     >
       {firstSlide && <h3 className="name">amirasadi</h3>}
       {lastSlide && (
-        <a href="google.com" target="_blank" className="git-hub">
+        <a
+          href="https://github.com/amirmasadi/pwa_swiper_react/tree/main/src"
+          target="_blank"
+          rel="noreferrer"
+          className="git-hub"
+        >
           git hub
         </a>
       )}
