@@ -5,8 +5,8 @@ import { Switch, Route, useLocation } from "react-router-dom";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Projects from "./pages/Projects";
-import { AnimatePresence } from "framer-motion";
-import SwiperPage from "./pages/SwiperPage";
+import NotFound from "./pages/NotFound";
+//import { AnimatePresence } from "framer-motion";
 
 function App() {
   const location = useLocation();
@@ -17,25 +17,25 @@ function App() {
       <div className="shapes shapes-3"></div>
       <div className="shapes shapes-4"></div>
       <div className="overly-blur"></div>
-      <AnimatePresence>
-        <Switch location={location} key={location.pathname}>
-          <Route path="/contact">
-            <Contact />
-          </Route>
-          <Route path="/projects">
-            <Projects />
-          </Route>
-          <Route path="/about">
-            <About />
-          </Route>
-          <Route path="/swiper">
-            <SwiperPage />
-          </Route>
-          <Route path="/">
-            <Main />
-          </Route>
-        </Switch>
-      </AnimatePresence>
+      {/* <AnimatePresence> */}
+      <Switch location={location} key={location.pathname}>
+        <Route path="/contact">
+          <Contact />
+        </Route>
+        <Route path="/projects">
+          <Projects />
+        </Route>
+        <Route path="/about">
+          <About />
+        </Route>
+        <Route exact path="/">
+          <Main />
+        </Route>
+        <Route path="*">
+          <NotFound />
+        </Route>
+      </Switch>
+      {/* </AnimatePresence> */}
     </Container>
   );
 }
@@ -87,6 +87,8 @@ const Container = styled.div`
     animation: hueanimate 15s linear infinite;
   }
   .overly-blur {
+    top: 0;
+    left: 0;
     position: absolute;
     width: 100%;
     height: 100%;

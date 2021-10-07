@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import ContactForm from "../components/ContactForm";
 import { Link } from "react-router-dom";
 import { AiOutlineClose } from "react-icons/ai";
 import { motion } from "framer-motion";
@@ -18,7 +17,7 @@ const inOutfade = {
   exit: { opacity: 0, x: 0, y: 0 },
 };
 
-export default function Main() {
+export default function NotFound() {
   return (
     <Container
       variants={inOutfade}
@@ -26,13 +25,10 @@ export default function Main() {
       animate="animate"
       exit="exit"
     >
+      <h2 className="title">4 0 4</h2>
       <Link className="cross" to="/">
         <AiOutlineClose />
       </Link>
-      <h2 className="title">Contact Me</h2>
-      <div className="form-container">
-        <ContactForm />
-      </div>
     </Container>
   );
 }
@@ -80,9 +76,9 @@ const Container = styled(motion.div)`
     }
   }
   .form-container {
-    width: 55%;
+    width: 50%;
     @media screen and (max-width: 768px) {
-      width: 95%;
+      width: 90%;
     }
   }
 `;

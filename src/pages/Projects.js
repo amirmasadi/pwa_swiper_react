@@ -17,6 +17,21 @@ const inOutfade = {
   },
   exit: { opacity: 0, x: 0, y: 0 },
 };
+const moPa = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+const moChil = {
+  initial: { opacity: 0, x: -50 },
+  animate: { opacity: 1, x: 0 },
+};
 
 export default function Main() {
   const [pData, setPData] = useState(projData);
@@ -65,18 +80,24 @@ export default function Main() {
           onChange={(e) => setSearch(e.target.value)}
         />
       </div>
-      <div className="proj-con">
+      <motion.div
+        className="proj-con"
+        variants={moPa}
+        initial="initial"
+        animate="animate"
+      >
         {pData.map((proj) => (
-          <div
+          <motion.div
             key={proj.id}
             className="projItem"
             style={{ backgroundImage: `url(${proj.img})` }}
+            variants={moChil}
           >
             <h3>{proj.name}</h3>
             <span>{proj.desc}</span>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </motion.div>
     </Container>
   );
 }
@@ -101,10 +122,15 @@ const Container = styled(motion.div)`
   }
   .cross {
     font-size: 3rem;
-    position: absolute;
-    top: 1px;
-    right: 10px;
     color: var(--bg);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    transition: all ease 0.5s;
+    &:hover {
+      opacity: 0.5;
+      color: var(--main-100);
+    }
   }
   .title {
     font-size: 3rem;

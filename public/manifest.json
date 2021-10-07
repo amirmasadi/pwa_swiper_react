@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "R_PWA_Swiper",
+  "name": "React PWA & swiperJs",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,45 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#01e694",
+  "background_color": "#161b2e",
+
+  "shortcuts": [
+    {
+      "name": "Contact Me",
+      "short_name": "Contact",
+      "url": "/contact",
+      "icons": [
+        {
+          "src": "/short_mail.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "About Me",
+      "short_name": "About",
+      "url": "/about",
+      "icons": [
+        {
+          "src": "/short_info.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "See Projects",
+      "short_name": "Projects",
+      "url": "/projects",
+      "icons": [
+        {
+          "src": "/short_proj.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
 }

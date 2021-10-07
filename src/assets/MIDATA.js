@@ -39,7 +39,7 @@ const ITEMSDATA = [
     id: 4,
     sum: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus dolorem aut reiciendis enim qui cupiditate eius dolores possimus?",
     hoverd: false,
-    to: "swiper",
+    to: "dummypage",
   },
   {
     title: "no idea",
@@ -47,7 +47,7 @@ const ITEMSDATA = [
     id: 5,
     sum: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus dolorem aut reiciendis enim qui cupiditate eius dolores possimus?",
     hoverd: false,
-    to: "swiper",
+    to: "dummypage",
   },
 ];
 

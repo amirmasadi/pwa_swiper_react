@@ -1,5 +1,22 @@
 import React from "react";
 import styled from "styled-components";
+import { motion } from "framer-motion";
+
+const moPa = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+const moChil = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1 },
+};
 
 export default function SkillItems({ title, items }) {
   return (
@@ -7,15 +24,20 @@ export default function SkillItems({ title, items }) {
       <div>
         <h3>{title}</h3>
       </div>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
+      <motion.div
+        style={{ display: "flex", flexWrap: "wrap" }}
+        variants={moPa}
+        initial="initial"
+        animate="animate"
+      >
         {items.map((itm, index) => {
           return (
-            <div key={index} className="sItems">
+            <motion.div key={index} className="sItems" variants={moChil}>
               <p>#{itm}</p>
-            </div>
+            </motion.div>
           );
         })}
-      </div>
+      </motion.div>
     </Skillitems>
   );
 }

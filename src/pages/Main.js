@@ -1,8 +1,10 @@
-import React from "react";
 import styled from "styled-components";
 import ITEMSDATA from "../assets/MIDATA";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Mousewheel } from "swiper";
+import { useState } from "react";
 
 const inOutfade = {
   initial: { opacity: 0, x: 0, y: 0 },
@@ -17,31 +19,61 @@ const inOutfade = {
   exit: { opacity: 0, x: 0, y: 0 },
 };
 
-export default function Main() {
+// install Swiper modules
+SwiperCore.use([Mousewheel]);
+
+export default function SwiperPage() {
+  const [WIDTH, setWIDTH] = useState(window.innerWidth < 780 ? true : false);
+  const [firstSlide, setfirstSlide] = useState(false);
+  const [lastSlide, setlastSlide] = useState(false);
+
   return (
     <Container
-      key={Math.random()}
       variants={inOutfade}
       initial="initial"
       animate="animate"
       exit="exit"
     >
-      {ITEMSDATA.map((itm) => (
-        <div key={itm.id} className="main-items">
-          <div className="flex-col-cen">
-            <h2 className="title title-top">{itm.title}</h2>
-            <p className="sum-text">{itm.sum}</p>
-          </div>
-          <div className="flex-col-cen">
-            <Link to={itm.to} className="icon">
-              {itm.icon}
-            </Link>
-            <Link to={itm.to} className="title title-bottom">
-              {itm.title}
-            </Link>
-          </div>
-        </div>
-      ))}
+      {firstSlide && <h3 className="name">amirasadi</h3>}
+      {lastSlide && (
+        <a href="google.com" target="_blank" className="git-hub">
+          git hub
+        </a>
+      )}
+      <Swiper
+        direction={WIDTH ? "vertical" : "horizontal"}
+        slidesPerView={5}
+        spaceBetween={0}
+        mousewheel={true}
+        centeredSlides={true}
+        grabCursor={true}
+        initialSlide={2}
+        slideToClickedSlide={true}
+        //virtualTranslate={true}
+        onSlideChange={(index) => {
+          index.activeIndex === 0 ? setfirstSlide(true) : setfirstSlide(false);
+          index.activeIndex === ITEMSDATA.length - 1
+            ? setlastSlide(true)
+            : setlastSlide(false);
+        }}
+      >
+        {ITEMSDATA.map((itm) => (
+          <SwiperSlide key={itm.id} className="main-items">
+            <div className="flex-col-cen">
+              <h2 className="title title-top">{itm.title}</h2>
+              <p className="sum-text">{itm.sum}</p>
+            </div>
+            <div className="flex-col-cen">
+              <Link to={itm.to} className="icon">
+                {itm.icon}
+              </Link>
+              <Link to={itm.to} className="title title-bottom">
+                {itm.title}
+              </Link>
+            </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </Container>
   );
 }
@@ -51,16 +83,14 @@ const Container = styled(motion.div)`
   height: 80vh;
   z-index: 10;
   display: flex;
-  overflow: hidden;
+  position: relative;
 
   @media screen and (max-width: 768px) {
+    overflow-x: hidden;
     height: 100vh;
     width: 100%;
-    flex-direction: column;
+    flex-direction: column !important;
     .title-top {
-      display: none;
-    }
-    .sum-text {
       //display: none;
     }
   }
@@ -68,8 +98,8 @@ const Container = styled(motion.div)`
   .main-items {
     overflow: hidden;
     padding: 5px;
-    width: calc(100% / 5);
-    height: 100%;
+    width: calc(100% / 5) !important;
+    height: 100% !important;
     background-color: rgba(0, 0, 0, 0.4);
     border: 1px solid var(--bg);
     transition: all ease 0.5s;
@@ -77,38 +107,16 @@ const Container = styled(motion.div)`
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-
     @media screen and (max-width: 768px) {
-      width: 100%;
-      height: calc(100% / 5);
-      //flex-direction: row;
+      width: 100% !important ;
+      height: calc(100% / 5) !important;
     }
+
     &:hover {
-      width: calc(100% / 2.5);
-      background-color: var(--main-50);
+      //background-color: var(--main-50);
       @media screen and (max-width: 768px) {
         width: 100%;
         height: calc(100% / 1.5);
-      }
-      @media screen and (min-width: 768px) {
-        &:hover .title-bottom {
-          transform: translateY(100px);
-          opacity: 0;
-        }
-      }
-
-      &:hover .title-top {
-        transform: translateY(0px);
-
-        opacity: 1;
-      }
-      &:hover .sum-text {
-        margin-top: 0px;
-        opacity: 1;
-      }
-      &:hover .icon {
-        transform: translateY(-50px);
-        animation: pulse 2s infinite;
       }
     }
     .title-bottom {
@@ -116,7 +124,7 @@ const Container = styled(motion.div)`
       margin-bottom: 10px;
     }
     .icon {
-      transition: transform ease 1s;
+      transition: all ease 1s;
       transition-delay: 0.5s;
       display: felx;
       justify-content: center;
@@ -125,10 +133,9 @@ const Container = styled(motion.div)`
       height: 55px;
       border-radius: 50%;
       box-shadow: 0 0 0 0 rgba(255, 255, 255, 1);
-      transform: scale(1);
+      transform: scale(1) translateY(0px);
       &:hover {
-        opacity: 0.8;
-        transform: scale(0.95);
+        opacity: 0.5;
       }
     }
     @keyframes pulse {
@@ -138,7 +145,7 @@ const Container = styled(motion.div)`
       }
 
       70% {
-        transform: scale(1);
+        transform: scale(1.1);
         box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
       }
 
@@ -164,6 +171,9 @@ const Container = styled(motion.div)`
       opacity: 0;
       transition: all ease 0.6s;
       transition-delay: 0.5s;
+      @media screen and (max-width: 768px) {
+        font-size: 1.5rem;
+      }
     }
     .sum-text {
       color: #fff;
@@ -173,10 +183,48 @@ const Container = styled(motion.div)`
       padding: 20px;
       opacity: 0;
       transition: all ease 1s;
-      width: 360px;
+      max-width: 350px;
+      font-size: 1.2rem;
+      @media screen and (max-width: 768px) {
+        font-size: 0.8rem;
+      }
     }
   }
   .hoverd {
     border: 10px solid black;
+  }
+  .name {
+    color: var(--main-50);
+    font-size: 3rem;
+    position: absolute;
+    top: 40%;
+    left: 15%;
+    @media screen and (max-width: 768px) {
+      color: var(--bg);
+      font-size: 2rem;
+      top: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  .git-hub {
+    color: var(--main-50);
+    font-size: 3rem;
+    position: absolute;
+    bottom: 50%;
+    right: 15%;
+    font-family: AbrilFatface;
+    text-decoration: underline;
+    &:hover {
+      opacity: 0.7;
+    }
+
+    @media screen and (max-width: 768px) {
+      color: var(--bg);
+      font-size: 2rem;
+      bottom: 15%;
+      right: 50%;
+      transform: translateX(50%);
+    }
   }
 `;
