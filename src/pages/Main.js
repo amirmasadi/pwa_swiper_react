@@ -23,7 +23,7 @@ const inOutfade = {
 SwiperCore.use([Mousewheel]);
 
 export default function SwiperPage() {
-  const [WIDTH, setWIDTH] = useState(window.innerWidth < 780 ? true : false);
+  //const [WIDTH, setWIDTH] = useState(window.innerWidth < 780 ? true : false);
   const [firstSlide, setfirstSlide] = useState(false);
   const [lastSlide, setlastSlide] = useState(false);
 
@@ -46,7 +46,7 @@ export default function SwiperPage() {
         </a>
       )}
       <Swiper
-        direction={WIDTH ? "vertical" : "horizontal"}
+        direction={window.innerWidth < 780 ? "vertical" : "horizontal"}
         slidesPerView={5}
         spaceBetween={0}
         mousewheel={true}
