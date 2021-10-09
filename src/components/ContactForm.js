@@ -41,7 +41,7 @@ export default function ContactForm() {
 
         <motion.label htmlFor="email" variants={childVariant}>
           Your Message
-          <textarea name="message" id="message" rows="6" />
+          <textarea name="message" id="message" rows="6" style={{resize: "vertical"}}/>
         </motion.label>
 
         <motion.button
